@@ -12,8 +12,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .example {
   color: red;
+}
+</style>
+
+
+<style lang='less'>
+@width: 10px;
+@height: @width + 10px;
+
+#header {
+  width: @width;
+  height: @height;
 }
 </style>

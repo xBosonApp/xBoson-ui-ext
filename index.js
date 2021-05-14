@@ -1,8 +1,16 @@
 var babel = require("@babel/core");
-var vc    = require('vue-template-compiler');
 var sassl = require('sass');
 var lessl = require('less');
+//var vl    = require('vue-loader');
+//var vc    = require('vue-template-compiler');
+//var vcc   = require('@vue/component-compiler-utils');
+//var sfc   = require('@vue/compiler-sfc');
+var cc    = require('@vue/component-compiler');
 
+
+//
+// TODO: pug Stylus jade
+//
 module.exports = {
   es5   : es5,
   jsx   : jsx,
@@ -48,27 +56,61 @@ function jsx(filename, code) {
 
 
 function vue(filename, code) {
-  var c = vc.parseComponent(code);
-  var r = {};
-
-  if (c.template) {
-    r.template = vc.compile(c.template.content).render;
-  }
+  var comp = cc.createDefaultCompiler({
+  });
+  var desc = comp.compileToDescriptor(filename, code);
+  return cc.assemble(comp, filename, desc).code;
 
   //TODO: 检测脚本类型 r.script.attrs
   if (c.script) {
-    r.script = es5(filename, c.script.content);
+    var buf = [];
+    //padspace(code, 0, c.script.start, buf);
+    buf.push(es5(filename, c.script.content));
+    r.script = buf.join('');
   }
 
   //TODO: 检测样式表类型 r.styles[x].attrs
   if (c.styles) {
     var buf = [];
     c.styles.forEach(function(s) {
-      buf.push(s.content, '\n');
+      scoped = scoped || s.attrs.scoped;
+      var css =  vcc.compileStyle({
+        source  : s.content,
+        filename: filename,
+        id      : id,
+        scoped  : scoped,
+      });
+      if (css.errors && css.errors.length) {
+        throw css.errors[0];
+      }
+      buf.push(css.code);
     });
-    r.style = buf.join('');
+    r.style = buf.join('\n');
+  }
+  
+  if (c.template) {
+    var t = vcc.compileTemplate({
+      source: c.template.content,
+      filename: filename,
+      compiler: vc,
+      id,
+      scoped: scoped,
+      isFunctional : true,
+    });
+    r.template = t.code;
   }
   return r;
+}
+
+
+function padspace(str, begin, end, pad) {
+  pad = pad || [];
+  for (var i=begin; i<end; ++i) {
+    if (str[i] == '\n') {
+      pad.push('\n');
+    }
+  }
+  return pad;
 }
 
 

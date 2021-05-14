@@ -1,0 +1,26 @@
+{
+  "name": "xboson-ui-ext",
+  "version": "0.1.0",
+  "description": "xboson TS 语言内核, 加载到xboson 核心.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "author": "yanming",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
+    "@babel/plugin-transform-property-mutators": "^7.12.13",
+    "@babel/preset-env": "^7.14.1",
+    "less": "^4.1.1",
+    "sass": "^1.32.13",
+    "typescript": "^4.2.4",
+    "vue-loader": "^15.9.7",
+    "vue-template-compiler": "^2.6.12"
+  }
+}

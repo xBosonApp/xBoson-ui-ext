@@ -14,9 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.14.0",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
     "@babel/plugin-transform-modules-commonjs": "^7.14.0",
     "@babel/plugin-transform-property-mutators": "^7.12.13",
     "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
     "@vue/compiler-sfc": "^3.0.11",
     "@vue/component-compiler": "^4.2.4",
     "less": "^4.1.1",

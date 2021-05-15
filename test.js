@@ -10,7 +10,31 @@ var mapping = {
   '.vue': lib.vue,
   '.less': lib.less,
   '.sass': lib.sass,
+  '.jsx': lib.jsx,
+  '.ts': lib.ts,
+  '.tsx': lib.tsx,
+  '.pug': lib.pug,
+  '.styl': lib.stylus,
 };
+
+const FILE_PROTOCOL = "file://";
+
+var fs_gasket = {
+  // url 或者本地路径
+  load(url) {
+    if (url.startsWith(FILE_PROTOCOL)) {
+      url = url.substr(FILE_PROTOCOL.length);
+    }
+    let rpath = path.join('./test/', path.normalize(url));
+    return fs.readFileSync(rpath, {encoding: 'utf8'});
+  }
+};
+
+var emuData = {
+  name : 'test xboson'
+};
+
+lib.init(fs_gasket);
 
 if (process.argv[2]) {
   depfile(process.argv[2]);
@@ -21,17 +45,26 @@ if (process.argv[2]) {
 
 function depfile(filename) {
   const full = path.join(base, filename);
-  console.log('\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\t', full);
+  if (fs.statSync(full).isDirectory()) return;
+
   const ext = path.extname(filename);
   const code = fs.readFileSync(full, {encoding: 'utf8'});
   
   const fn = mapping[ext];
   if (fn) {
-    console.log(fn(full, code));
+    function done(err, code) {
+      console.log('\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\t', full);
+      if (err) {
+        console.error(err.stack);
+      } else {
+        console.log(code);
+      }
+    }
+    fn(done, full, code, emuData)
   } else {
     console.log("Unknow file type");
   }
 }
 
 
-console.log('\n<over>');
+// console.log('\n<over>');

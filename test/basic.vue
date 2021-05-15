@@ -18,7 +18,6 @@ export default {
 }
 </style>
 
-
 <style lang='less'>
 @width: 10px;
 @height: @width + 10px;

@@ -21,3 +21,5 @@
 *.node
 *.sln
 **/build/**
+dist/*.pack.js*
+dist/cache/**

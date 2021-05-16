@@ -1,0 +1,26 @@
+{
+  // "targets": "es5",
+  "compact": false,
+
+  "presets": [
+    [
+      "@babel/preset-env", 
+      {
+        "useBuiltIns": false,
+        "modules": "commonjs"
+      }
+    ]
+  ],
+
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false,
+        "corejs": false,
+        "helpers": false,
+        "regenerator": false
+      }
+    ]
+  ]
+}

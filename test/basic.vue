@@ -3,8 +3,10 @@
 </template>
 
 <script>
+import * as vue from 'vue'
 export default {
   data () {
+    console.log(vue)
     return {
       msg: 'Hello world!'
     }

@@ -7,5 +7,7 @@ let dropdown =
       <MenuItem>Do Something Else</MenuItem>
     </Menu>
   </Dropdown>;
-
+  
+import * as vue from 'vue'
+console.log(vue);
 console.log(dropdown);

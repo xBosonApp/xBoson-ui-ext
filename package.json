@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node test",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "start": "node lib/server"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "buffer": "^6.0.3",
     "core-js": "^3.12.1",
     "crypto-browserify": "^3.12.0",
+    "js-logger": "^1.6.1",
     "less": "^4.1.1",
     "path-browserify": "^1.0.1",
     "pug": "^3.0.2",
@@ -39,7 +41,8 @@
     "vue-loader": "^15.9.7",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^5.37.0",
-    "webpackbar": "^5.0.0-3"
+    "webpackbar": "^5.0.0-3",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "webpack-cli": "^4.7.0"

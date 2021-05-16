@@ -10,27 +10,20 @@ if (!module.parent) {
   test(require('./index.js'));
 }
 
-function test(lib) {    
-  var mapping = {
-    '.js' : lib.es5,
-    '.vue': lib.vue,
-    '.less': lib.less,
-    '.sass': lib.sass,
-    '.jsx': lib.jsx,
-    '.ts': lib.ts,
-    '.tsx': lib.tsx,
-    '.pug': lib.pug,
-    '.styl': lib.stylus,
-  };
-
+function test(lib) {
   var fs_gasket = {
     // url 或者本地路径
-    load(url) {
-      if (url.startsWith(FILE_PROTOCOL)) {
-        url = url.substr(FILE_PROTOCOL.length);
+    load(url, done) {
+      try {
+        if (url.startsWith(FILE_PROTOCOL)) {
+          url = url.substr(FILE_PROTOCOL.length);
+        }
+        let rpath = path.join('./test/', path.normalize(url));
+        let content = fs.readFileSync(rpath, {encoding: 'utf8'});
+        done(null, content);
+      } catch(err) {
+        done(err);
       }
-      let rpath = path.join('./test/', path.normalize(url));
-      return fs.readFileSync(rpath, {encoding: 'utf8'});
     }
   };
 
@@ -54,7 +47,7 @@ function test(lib) {
     const ext = path.extname(filename);
     const code = fs.readFileSync(full, {encoding: 'utf8'});
     
-    const fn = mapping[ext];
+    const fn = lib.ext_mapping[ext];
     if (fn) {
       function done(err, code) {
         console.log('\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\t', full);

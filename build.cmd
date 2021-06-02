@@ -1,1 +1,1 @@
-tar -czvpf dist/xboson-ui-ext.tar.gz node_modules lib 2> dist/tar.log
+tar -czvpf dist/xboson-ui-ext.tar.gz node_modules lib package.json 2> dist/tar.log

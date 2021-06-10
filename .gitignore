@@ -1,3 +1,4 @@
+.gradle
 */.svn/*
 **/node_modules/**
 **/db_buffer/**
@@ -23,3 +24,4 @@
 **/build/**
 dist/*.pack.js*
 dist/cache/**
+ui-render.cmd

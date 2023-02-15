@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "https://github.com/yanmingsohu/xBoson-ui-ext"
   },
   "author": "yanming",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.14.0",
     "@babel/plugin-syntax-jsx": "^7.12.13",

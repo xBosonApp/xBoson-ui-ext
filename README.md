@@ -1,9 +1,9 @@
-# TypeScript 语言的 xBoson 内核
+# xBoson 内核的前端文件渲染器
 
 java 内核的 js 语言为 es5 的古旧版本, 为了支持 ts/tsx/jsx/... 语法, 将最新的编译器用 es5 语法编译
 并装入 xboson 内核中.
 
-为前端文件提供 vue/jsx/sass/pug/stylus/less/... 解析器
+为前端文件提供 vue/jsx/sass/pug/stylus/less/... 解析器合渲染器.
 
 
 # 安装
@@ -30,6 +30,8 @@ dist/ 目录中的文件部署到 xBoson 内核.
 
 
 # 协议设计
+
+用 WebSocket 作为数据通信协议.
 
 ## 协议框架
 

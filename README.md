@@ -17,12 +17,12 @@ java 内核的 js 语言为 es5 的古旧版本, 为了支持 ts/tsx/jsx/... 语
 
 `npm start`
 
-环境变量:
+Shell 环境变量:
 
 * port : 服务器启动后绑定的服务端口, 默认 7788
 
 
-# 编译 (失败)
+# 编译并集成 (失败)
 
 `npm run build`
 
@@ -49,12 +49,12 @@ dist/ 目录中的文件部署到 xBoson 内核.
 10+n*4  x(n)     第n个数据包
 }
 
-## 功能 1, 请求可解析文件扩展名
+### 功能 1, 请求可解析文件扩展名
 
 请求数据包长度 0
 使用功能5 应答
 
-## 功能 2, 请求渲染文件
+### 功能 2, 请求渲染文件
 
 请求数据包长度 3,
 数据包1: 文件名
@@ -63,7 +63,7 @@ dist/ 目录中的文件部署到 xBoson 内核.
 
 使用功能 3/4 进行应答
 
-## 功能 3, 应答渲染文件
+### 功能 3, 应答渲染文件
 
 应答数据包长度 2+n
 数据包1: 渲染后的文件
@@ -71,24 +71,24 @@ dist/ 目录中的文件部署到 xBoson 内核.
 数据包n: 依赖文件1, 渲染文件本身不存储于该列表中, n>=0
 数据包n+1: 依赖文件1+n
 
-## 功能 4, 错误
+### 功能 4, 错误
 
 应答数据包长度 1
 数据包1: 错误消息
 
-## 功能 5, 应答文件扩展名
+### 功能 5, 应答文件扩展名
 
 数据包长度 1
 数据包内容: 以空格分隔的扩展名列表,
 '.ts' 描述 typescript 可解析;
 
-## 功能 6, 请求原始文件
+### 功能 6, 请求原始文件
 
 数据包长度 1,
 数据包1: 文件名
 使用功能 4/7 应答
 
-## 功能 7, 应答单个依赖文件
+### 功能 7, 应答单个依赖文件
 
 数据包长度 1,
 数据包1: 文件内容
@@ -97,13 +97,9 @@ dist/ 目录中的文件部署到 xBoson 内核.
 主文件的 6/7 消息总是呈现队列顺序调用, 一个请求一个应答.
 
 
-# 参考
+## 参考
 
-编译器, 将新的js代码转换为旧的js
-https://babel.docschina.org/
-
-JSX 简介
-https://react.docschina.org/docs/introducing-jsx.html
-
-TypeScript
-https://www.tslang.cn/docs/handbook/migrating-from-javascript.html
+* [xBoson平台运算核心](https://github.com/yanmingsohu/xBoson-core)
+* [编译器, 将新的js代码转换为旧的js](https://babel.docschina.org/)
+* [JSX 简介](https://react.docschina.org/docs/introducing-jsx.html)
+* [TypeScript](https://www.tslang.cn/docs/handbook/migrating-from-javascript.html)
